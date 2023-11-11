@@ -3,14 +3,15 @@ using Microsoft.Extensions.Logging;
 using RestWithASPNET.Model;
 using RestWithASPNET.Services.Implementations;
 
-namespace RestWithASPNET.Controllers
+namespace RestWithASPNETUdemy.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
 
         private readonly ILogger<PersonController> _logger;
+
         private IPersonService _personService;
 
         public PersonController(ILogger<PersonController> logger, IPersonService personService)
@@ -22,7 +23,6 @@ namespace RestWithASPNET.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-
             return Ok(_personService.FindAll());
         }
 
@@ -31,7 +31,6 @@ namespace RestWithASPNET.Controllers
         {
             var person = _personService.FindById(id);
             if (person == null) return NotFound();
-
             return Ok(person);
         }
 
@@ -41,7 +40,6 @@ namespace RestWithASPNET.Controllers
             if (person == null) return BadRequest();
             return Ok(_personService.Create(person));
         }
-
 
         [HttpPut]
         public IActionResult Put([FromBody] Person person)
@@ -54,7 +52,6 @@ namespace RestWithASPNET.Controllers
         public IActionResult Delete(long id)
         {
             _personService.Delete(id);
-
             return NoContent();
         }
     }
