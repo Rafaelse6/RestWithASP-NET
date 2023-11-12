@@ -5,7 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestWithASPNET.Model.Context;
-using RestWithASPNET.Services.Implementations;
+using RestWithASPNET.Business.Implementations;
+using RestWithASPNET.Business;
 
 namespace RestWithASPNET
 {
@@ -30,7 +31,7 @@ namespace RestWithASPNET
             services.AddApiVersioning();
 
             //Dependency Injection
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
