@@ -29,18 +29,18 @@ namespace RestWithASPNET.Business.Implementations
             return _converter.Parse(_repository.FindById(id));
         }
 
-        public BookVO Create(BookVO person)
+        public BookVO Create(BookVO book)
         {
-            var personEntity = _converter.Parse(person);
-            personEntity = _repository.Create(personEntity);
-            return _converter.Parse(personEntity);
+            var bookEntity = _converter.Parse(book);
+            bookEntity = _repository.Create(bookEntity);
+            return _converter.Parse(bookEntity);
         }
 
-        public BookVO Update(BookVO person)
+        public BookVO Update(BookVO book)
         {
-            var personEntity = _converter.Parse(person);
-            personEntity = _repository.Update(personEntity);
-            return _converter.Parse(personEntity);
+            var bookEntity = _converter.Parse(book);
+            bookEntity = _repository.Update(bookEntity);
+            return _converter.Parse(bookEntity);
         }
 
         public void Delete(long id)
