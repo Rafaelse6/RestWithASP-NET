@@ -9,10 +9,10 @@ namespace RestWithASPNET.Business.Implementations
 {
     public class BookBusinessImplementation : IBookBusiness
     {
-
         private readonly IRepository<Book> _repository;
 
         private readonly BookConverter _converter;
+
         public BookBusinessImplementation(IRepository<Book> repository)
         {
             _repository = repository;
@@ -29,18 +29,18 @@ namespace RestWithASPNET.Business.Implementations
             return _converter.Parse(_repository.FindById(id));
         }
 
-        public BookVO Create(BookVO book)
+        public BookVO Create(BookVO person)
         {
-            var bookEntity = _converter.Parse(book);
-            bookEntity = _repository.Create(bookEntity);
-            return _converter.Parse(_repository.Create(bookEntity));
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
-        public BookVO Update(BookVO book)
+        public BookVO Update(BookVO person)
         {
-            var bookEntity = _converter.Parse(book);
-            bookEntity = _repository.Update(bookEntity);
-            return _converter.Parse(bookEntity);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(long id)

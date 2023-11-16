@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestWithASPNET.Model.Base;
 using RestWithASPNET.Model.Context;
+using RestWithASPNET.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace RestWithASPNET.Repository.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-
         private MySQLContext _context;
 
         private DbSet<T> dataset;

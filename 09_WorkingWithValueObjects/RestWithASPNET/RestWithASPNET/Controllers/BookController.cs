@@ -4,9 +4,10 @@ using RestWithASPNET.Business;
 using RestWithASPNET.Data.VO;
 using RestWithASPNET.Model;
 
-namespace RestWithASPNET.Controllers
+namespace RestWithASPNETUdemy.Controllers
 {
-    [ApiVersion("1.0")]
+
+    [ApiVersion("1")]
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class BookController : ControllerBase
