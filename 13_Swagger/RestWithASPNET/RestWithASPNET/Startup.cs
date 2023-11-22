@@ -15,6 +15,8 @@ using RestWithASPNET.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 using RestWithASPNET.Hypermedia.Filters;
 using RestWithASPNET.Hypermedia.Enricher;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWithASPNET
 {
@@ -66,6 +68,21 @@ namespace RestWithASPNET
 
             services.AddApiVersioning();
 
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "REST API's From 0 to Azure with ASP.NET Core 5 and Docker",
+                        Version = "v1",
+                        Description = "API RESTful developed in course 'REST API's From 0 to Azure with ASP.NET Core 5 and Docker'",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Rafael Santos",
+                            Url = new Uri("https://github.com/Rafaelse6")
+                        }
+                    });
+            });
+
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
@@ -83,6 +100,18 @@ namespace RestWithASPNET
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "REST API's From 0 to Azure with ASP.NET Core 5 and Docker - V1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
             app.UseAuthorization();
 
