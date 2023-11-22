@@ -60,6 +60,7 @@ namespace RestWithASPNET
 
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
 
             services.AddSingleton(filterOptions);
 
@@ -88,7 +89,7 @@ namespace RestWithASPNET
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/v{version=apiVersion}/{id?}");
             });
         }
 
