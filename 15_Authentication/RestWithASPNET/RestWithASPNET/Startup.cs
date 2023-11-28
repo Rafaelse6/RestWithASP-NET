@@ -30,11 +30,8 @@ namespace RestWithASPNET
 {
     public class Startup
     {
-
         public IConfiguration Configuration { get; }
-
         public IWebHostEnvironment Environment { get; }
-
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
@@ -44,7 +41,6 @@ namespace RestWithASPNET
                 .WriteTo.Console()
                 .CreateLogger();
         }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -80,8 +76,8 @@ namespace RestWithASPNET
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                   .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                   .RequireAuthenticatedUser().Build());
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
             });
 
             services.AddCors(options => options.AddDefaultPolicy(builder =>
@@ -108,7 +104,7 @@ namespace RestWithASPNET
                 options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
             })
-             .AddXmlSerializerFormatters();
+            .AddXmlSerializerFormatters();
 
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
@@ -116,10 +112,10 @@ namespace RestWithASPNET
 
             services.AddSingleton(filterOptions);
 
+            //Versioning API
             services.AddApiVersioning();
 
-            services.AddSwaggerGen(c =>
-            {
+            services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
@@ -128,8 +124,8 @@ namespace RestWithASPNET
                         Description = "API RESTful developed in course 'REST API's From 0 to Azure with ASP.NET Core 5 and Docker'",
                         Contact = new OpenApiContact
                         {
-                            Name = "Rafael Santos",
-                            Url = new Uri("https://github.com/Rafaelse6")
+                            Name = "Leandro Costa",
+                            Url = new Uri("https://github.com/leandrocgsi")
                         }
                     });
             });
@@ -162,10 +158,9 @@ namespace RestWithASPNET
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
-            {
+            app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                    "REST API's From 0 to Azure with ASP.NET Core 5 and Docker - V1");
+                    "REST API's From 0 to Azure with ASP.NET Core 5 and Docker - v1");
             });
 
             var option = new RewriteOptions();
@@ -177,10 +172,9 @@ namespace RestWithASPNET
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/v{version=apiVersion}/{id?}");
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
             });
         }
-
         private void MigrateDatabase(string connection)
         {
             try
@@ -189,7 +183,7 @@ namespace RestWithASPNET
                 var evolve = new Evolve.Evolve(evolveConnection, msg => Log.Information(msg))
                 {
                     Locations = new List<string> { "db/migrations", "db/dataset" },
-                    IsEraseDisabled = true
+                    IsEraseDisabled = true,
                 };
                 evolve.Migrate();
             }
