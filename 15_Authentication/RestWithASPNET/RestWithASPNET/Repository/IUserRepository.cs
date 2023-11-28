@@ -9,6 +9,8 @@ namespace RestWithASPNET.Repository
 
         User ValidateCredentials(string username);
 
+        bool RevokeToken(string username);
+
         User RefreshUserInfo(User user);
     }
 }

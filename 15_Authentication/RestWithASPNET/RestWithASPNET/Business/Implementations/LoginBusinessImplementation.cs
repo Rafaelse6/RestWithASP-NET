@@ -83,5 +83,10 @@ namespace RestWithASPNET.Business.Implementations
                 expirationDate.ToString(DATE_FORMAT),
                 accessToken, refreshToken);
         }
+
+        public bool RevokeToken(string userName)
+        {
+            return _repository.RevokeToken(userName);
+        }
     }
 }
