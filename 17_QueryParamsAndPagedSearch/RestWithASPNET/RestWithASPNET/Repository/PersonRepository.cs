@@ -45,15 +45,13 @@ namespace RestWithASPNET.Repository
             else if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
             {
                 return _context.Persons.Where(
-                p => p.FirstName.Contains(firstName)
-                && p.LastName.Contains(lastName)).ToList();
+                p => p.LastName.Contains(lastName)).ToList();
 
             }
             else if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(lastName))
             {
                 return _context.Persons.Where(
-                p => p.FirstName.Contains(firstName)
-                && p.LastName.Contains(lastName)).ToList();
+                p => p.FirstName.Contains(firstName)).ToList();
 
             }
 
