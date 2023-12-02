@@ -24,13 +24,15 @@ namespace RestWithASPNET.Business.Implementations
             return _converter.Parse(_repository.FindAll());
         }
 
-        public PagedSearchVO<PersonVO> FindWithPagedSearrch(
+        public PagedSearchVO<PersonVO> FindWithPagedSearch(
             string name, string sortDirection, int pageSize, int page)
         {
-            var offset = page > 0 ? (page - 1) * pageSize : 0;
+           
             var sort = (!string.IsNullOrWhiteSpace(sortDirection) &&
                 !sortDirection.Equals("desc") ? "asc" : "desc");
-            var size = (pageSize < 1) ? 1 : pageSize;
+            var size = (pageSize < 1) ? 10 : pageSize;
+            var offset = page > 0 ? (page - 1) * size : 0;
+
 
             string query = @"select * from person p where 1 = 1 ";
             if (!string.IsNullOrWhiteSpace(name)) query = query + $" and p.first_name like '%{name}%' ";
@@ -44,7 +46,7 @@ namespace RestWithASPNET.Business.Implementations
 
             return new PagedSearchVO<PersonVO>
             {
-                CurrentPage = offset,
+                CurrentPage = page,
                 List = _converter.Parse(persons),
                 PageSize = size,
                 SortDirections = sort,
