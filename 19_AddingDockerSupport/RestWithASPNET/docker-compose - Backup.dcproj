@@ -7,7 +7,7 @@
     <ProjectGuid>9cb41788-dff0-4e59-9f23-b0f8dfaaec40</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>rest-with-asp-net</DockerServiceName>
+    <DockerServiceName>restwithaspnet</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />
