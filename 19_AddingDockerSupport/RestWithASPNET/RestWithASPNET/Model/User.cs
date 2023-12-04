@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestWithASPNET.Model
 {
+    [Table("users")]
     public class User
     {
-
         [Key]
         [Column("id")]
         public long Id { get; set; }

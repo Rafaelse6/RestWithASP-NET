@@ -41,8 +41,8 @@ namespace RestWithASPNET.Repository
         public User RefreshUserInfo(User user)
         {
             if (!_context.Users.Any(u => u.Id.Equals(user.Id))) return null;
-            var result = _context.Users.SingleOrDefault(p => p.Id.Equals(user.Id));
 
+            var result = _context.Users.SingleOrDefault(p => p.Id.Equals(user.Id));
             if (result != null)
             {
                 try
@@ -53,11 +53,9 @@ namespace RestWithASPNET.Repository
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             }
-
             return result;
         }
 
