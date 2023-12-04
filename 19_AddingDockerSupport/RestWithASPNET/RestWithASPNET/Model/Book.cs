@@ -4,6 +4,7 @@ using System;
 
 namespace RestWithASPNET.Model
 {
+    [Table("books")]
     public class Book : BaseEntity
     {
         [Column("title")]
