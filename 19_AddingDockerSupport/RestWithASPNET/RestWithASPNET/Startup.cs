@@ -126,8 +126,8 @@ namespace RestWithASPNET
                         Description = "API RESTful developed in course 'REST API's From 0 to Azure with ASP.NET Core 5 and Docker'",
                         Contact = new OpenApiContact
                         {
-                            Name = "Leandro Costa",
-                            Url = new Uri("https://github.com/leandrocgsi")
+                            Name = "Rafael Santos",
+                            Url = new Uri("https://github.com/Rafaelse6")
                         }
                     });
             });
